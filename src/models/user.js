@@ -37,8 +37,7 @@ const userSchema = new mongoose.Schema({
     addreess: {
         city: String,
         state: String,
-        neighborhood: String,
-        required: true
+        neighborhood: String
     },
     active_loans: {
         type: Number,
@@ -49,4 +48,17 @@ const userSchema = new mongoose.Schema({
         timestamps: true
     });
 
-module.exports = mongoose.model('user', userSchema);
+const bcrypt = require('bcrypt');
+
+//Código para transformar e salvar apenas o hash da senha
+userSchema.pre('save', async function (next) {
+    //Se não tiver alteração de senha, pula
+    if (!this.isModified('password_hash')) return next();
+
+    //Gera o hash da senha que sera armazenado no banco
+    const salt = await bcrypt.genSalt(10);
+    this.password_hash = await bcrypt.hash(this.password_hash, salt);
+    next();
+});
+
+module.exports = mongoose.model('User', userSchema, 'customers');

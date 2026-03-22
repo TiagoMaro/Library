@@ -5,13 +5,13 @@ const authRoutes = require('./src/routes/authRoutes');
 
 const app = express();
 
-// Conectar ao MongoDB
+// Conexão com o banco
 connectDB();
 
-// Middlewares para ler JSON
+//Leitura de JSON
 app.use(express.json());
 
-// Delegar rotas de autenticação
+//Rotas de autenticação
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000;
