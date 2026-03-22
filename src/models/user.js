@@ -50,12 +50,12 @@ const userSchema = new mongoose.Schema({
 
 const bcrypt = require('bcrypt');
 
-//Código para transformar e salvar apenas o hash da senha
+//Save only the hash of password
 userSchema.pre('save', async function (next) {
-    //Se não tiver alteração de senha, pula
+    //If the password is not modified, continue
     if (!this.isModified('password_hash')) return next();
 
-    //Gera o hash da senha que sera armazenado no banco
+    //Generate a hash of password
     const salt = await bcrypt.genSalt(10);
     this.password_hash = await bcrypt.hash(this.password_hash, salt);
     next();

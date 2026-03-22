@@ -6,16 +6,16 @@ exports.register = async (req, res) => {
     try {
         const { email, cpf } = req.body;
 
-        // Verifica se o email ou CPF já estão cadastrados
+        //Verify if user exists 
         const userExists = await User.findOne({ $or: [{ email }, { cpf }] });
         if (userExists) {
             return res.status(400).json({ error: 'Usuário ou CPF já cadastrado.' });
         }
 
-        // Cria o novo usuário
+        //Create new user
         const user = await User.create(req.body);
 
-        // Remove a senha do objeto de resposta por segurança
+        //Remove the password
         user.password_hash = undefined;
 
         return res.status(201).json({
@@ -31,33 +31,33 @@ exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        //Buscar usuário e incluir explicitamente a senha
+        //Change the user and include the password hash
         const user = await User.findOne({ email }).select('+password_hash');
 
         if (!user) {
             return res.status(401).json({ error: 'E-mail ou senha incorretos' });
         }
         
-        // Verifica se o hash realmente existe antes de comparar
+        //Verify if a password hash exists
         if (!user.password_hash) {
             return res.status(500).json({ error: 'Erro interno: Senha não encontrada no registro.' });
         }
-        
-        //Comparar a senha enviada com o hash do banco
+
+        //Compare the passwords
         const isMatch = await bcrypt.compare(password, user.password_hash);
 
         if (!isMatch) {
             return res.status(401).json({ error: 'E-mail ou senha incorretos' });
         }
 
-        //Gerar o Token JWT
+        //Generate Token JWT
         const token = jwt.sign(
             { id: user._id },
             process.env.JWT_SECRET,
-            { expiresIn: '1d' } // Expira em 24 horas
+            { expiresIn: '1d' } //1 day
         );
 
-        //Retornar os dados
+        //Return datas
         user.password_hash = undefined;
         return res.json({ user, token });
 

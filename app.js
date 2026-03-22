@@ -5,13 +5,13 @@ const authRoutes = require('./src/routes/authRoutes');
 
 const app = express();
 
-// Conexão com o banco
+//DB connection
 connectDB();
 
-//Leitura de JSON
+//Read JSON
 app.use(express.json());
 
-//Rotas de autenticação
+//Auth routes
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000;
