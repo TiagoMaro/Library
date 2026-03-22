@@ -1,0 +1,10 @@
+# Dependências (pasta pesada que o npm recria)
+node_modules/
+
+# Variáveis sensíveis (segurança)
+.env
+
+# Logs e arquivos de sistema do Linux/Zorin
+npm-debug.log*
+.DS_Store
+dist/
