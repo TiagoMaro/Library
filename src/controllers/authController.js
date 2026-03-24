@@ -15,7 +15,7 @@ exports.register = async (req, res) => {
         //Create new user
         const user = await User.create(req.body);
 
-        //Remove the password
+        //Remove the password for security data
         user.password_hash = undefined;
 
         return res.status(201).json({
@@ -37,7 +37,7 @@ exports.login = async (req, res) => {
         if (!user) {
             return res.status(401).json({ error: 'E-mail ou senha incorretos' });
         }
-        
+
         //Verify if a password hash exists
         if (!user.password_hash) {
             return res.status(500).json({ error: 'Erro interno: Senha não encontrada no registro.' });
@@ -65,3 +65,12 @@ exports.login = async (req, res) => {
         return res.status(500).json({ error: 'Erro no servidor: ' + err.message });
     }
 };
+
+exports.updateUser = async (req, res) => {
+    try { 
+        const userExists = await User.findOne({ $or: [{ email }, { cpf }] });
+    }
+    catch { 
+
+    }
+}
