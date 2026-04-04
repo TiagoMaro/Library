@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
     active_loans: {
         type: Number,
         default: 0
+    },
+    is_admin: {
+        type: Boolean,
+        default: false
     }
 },
     {
