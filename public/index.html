@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Library System</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-box login">
+            <form id="loginForm">
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="forgot-link"><a href="#">Esqueceu sua senha?</a></div>
+                <button type="submit" class="btn">Login</button>
+                <p>ou faça login com plataformas sociais</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <form id="registerForm">
+                <h1>Registrar</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" placeholder="Email" required>
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <p>ou registre com plataformas sociais</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </form>
+        </div>
+
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>Olá, Bem Vindo!</h1>
+                <p>Não tem uma conta?</p>
+                <button class="btn register-btn">Register</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Bem Vindo!</h1>
+                <p>Já tem uma conta?</p>
+                <button class="btn login-btn">Login</button>
+            </div>
+        </div>
+    </div>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
